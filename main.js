@@ -58,15 +58,18 @@ const products = [
 // PONTO DE ENTRADA – roda quando a página termina de carregar
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {
+    try {
+        // Se a página possui o grid de produtos (camisetas.html), inicializa filtros
+        const productGrid = document.getElementById('product-grid');
+        if (productGrid) {
+            initProductListing();
+        }
 
-    // Se a página possui o grid de produtos (camisetas.html), inicializa filtros
-    const productGrid = document.getElementById('product-grid');
-    if (productGrid) {
-        initProductListing();
+        // Inicializa tudo que é global (funciona em TODAS as páginas)
+        initGlobalScripts();
+    } catch (error) {
+        console.error('Erro ao inicializar scripts:', error);
     }
-
-    // Inicializa tudo que é global (funciona em TODAS as páginas)
-    initGlobalScripts();
 });
 
 // ============================================================
