@@ -1,0 +1,18 @@
+{
+  "name": "loja-cienny",
+  "version": "1.0.0",
+  "description": "Cyenny Boutique - Loja de roupas e chaveiros com temática religiosa",
+  "author": "Cyenny Boutique",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint src --ext .js"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}

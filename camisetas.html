@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camisetas | Cyenny Boutique</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body class="page-camisetas">
+    <header>
+        <div class="header-container">
+            <div class="logo-text">
+                <a href="./index.html" style="text-decoration: none; color: inherit;">
+                    <span class="cyenny">Cyenny</span> <span class="boutique">Boutique</span>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="./index.html#colecao">COLEÇÃO</a></li>
+                    <li><a href="./camisetas.html" class="active">CAMISETAS</a></li>
+                    <li><a href="./index.html#chaveiros">CHAVEIROS</a></li>
+                </ul>
+            </nav>
+            <!-- Botões de ação: Login e Carrinho (separados do menu) -->
+            <div class="header-actions">
+                <a href="#" id="user-btn" class="action-btn user-action">
+                    <span class="action-icon">👤</span> ENTRAR
+                </a>
+                <a href="#" id="cart-btn" class="action-btn cart-action">
+                    <span class="action-icon">🛒</span> CARRINHO
+                    <span id="cart-badge" class="cart-badge">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="camisetas-listing" class="products-page">
+            <div class="products-header">
+                <h2>Camisetas Religiosas</h2>
+                <div class="search-container">
+                    <input type="text" id="product-search" placeholder="Buscar por modelo, santo ou cor...">
+                    <span class="search-icon">🔍</span>
+                </div>
+            </div>
+
+            <div class="products-layout">
+                <aside class="filters-sidebar">
+                    <div class="filter-group">
+                        <h3>Categoria</h3>
+                        <div class="filter-options">
+                            <label><input type="checkbox" name="category" value="feminina"> Feminina</label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3>Tamanho</h3>
+                        <div class="filter-options">
+                            <label><input type="checkbox" name="size" value="P"> P</label>
+                            <label><input type="checkbox" name="size" value="M"> M</label>
+                            <label><input type="checkbox" name="size" value="G"> G</label>
+                            <label><input type="checkbox" name="size" value="GG"> GG</label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3>Idade</h3>
+                        <div class="filter-options">
+                            <label><input type="radio" name="age" value="adulto"> Adulto</label>
+                            <label><input type="radio" name="age" value="infantil"> Infantil</label>
+                            <label><input type="radio" name="age" value="todos" checked> Todos</label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3>Preço Máximo</h3>
+                        <div class="price-filter">
+                            <input type="range" id="price-range" min="0" max="200" value="200">
+                            <div class="price-labels">
+                                <span>R$ 0</span>
+                                <span id="price-value">R$ 200</span>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <div class="products-main">
+                    <div id="product-grid" class="product-grid">
+                        <!-- Produtos serão inseridos via JavaScript -->
+                    </div>
+                    <div id="no-results" class="no-results" style="display: none;">
+                        Nenhum produto encontrado com esses filtros.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="logo-text">
+                <span class="cyenny">Cyenny</span> <span class="boutique">Boutique</span>
+            </div>
+            <p>&copy; 2026 Cyenny Boutique — Vista sua fé com estilo e elegância</p>
+        </div>
+    </footer>
+
+    <!-- Modal de Login -->
+    <div id="login-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content login-content">
+            <button class="close-modal">&times;</button>
+            <div class="modal-body">
+                <h2>Bem-vindo(a)</h2>
+                <p>Identifique-se para salvar suas escolhas no carrinho.</p>
+                <form id="login-form" class="login-form">
+                    <div class="input-group">
+                        <label for="user-name">Seu Nome</label>
+                        <input type="text" id="user-name" required placeholder="Ex: Maria Silva">
+                    </div>
+                    <div class="input-group">
+                        <label for="user-phone">Seu Celular (opcional)</label>
+                        <input type="tel" id="user-phone" placeholder="(11) 99999-9999">
+                    </div>
+                    <button type="submit" class="btn">SALVAR E ENTRAR</button>
+                </form>
+                <div id="user-profile" class="user-profile" style="display: none;">
+                    <p>Olá, <strong id="display-user-name"></strong>!</p>
+                    <button id="logout-btn" class="btn alt-btn">Sair</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar do Carrinho -->
+    <div id="cart-overlay" class="modal-overlay cart-overlay"></div>
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h2>Seu Carrinho</h2>
+            <button id="close-cart" class="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items-container">
+            <div class="empty-cart-message">Seu carrinho está vazio.</div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">R$ 0,00</span>
+            </div>
+            <button id="checkout-btn" class="btn buy-btn" disabled>FINALIZAR COMPRA</button>
+        </div>
+    </div>
+
+    <!-- Modal de Produto -->
+    <div id="product-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img id="modal-img" src="" alt="">
+                </div>
+                <div class="modal-info">
+                    <h2 id="modal-title"></h2>
+                    <p class="modal-price" id="modal-price"></p>
+                    
+                    <div class="modal-details">
+                        <p id="modal-description" class="description-text"></p>
+                        <div class="specs">
+                            <p><strong>Material:</strong> <span id="modal-material"></span></p>
+                            <p><strong>Destaque:</strong> <span id="modal-extra"></span></p>
+                        </div>
+                    </div>
+
+                    <div class="modal-selection">
+                        <h3>Tamanhos disponíveis:</h3>
+                        <div class="size-options" id="modal-sizes">
+                            <!-- Injetado via JS -->
+                        </div>
+                    </div>
+
+                    <div class="modal-payment">
+                        <h3>Forma de Pagamento:</h3>
+                        <div class="payment-badge">
+                            <span class="pix-icon">◈</span> Pix
+                        </div>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button id="add-to-cart-btn" class="btn buy-btn">
+                            ADICIONAR AO CARRINHO
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+</body>
+</html>
