@@ -1,5 +1,14 @@
 // ============================================================
-// BANCO DE PRODUTOS
+// CONFIGURAÇÃO GLOBAL
+// ============================================================
+const APP_CONFIG = {
+    WHATSAPP_NUMBER: '558792536500' // Altere aqui ou via variável de ambiente
+};
+
+// Se em produção (Vercel), tenta usar variável de ambiente
+if (typeof process !== 'undefined' && process.env && process.env.VITE_WHATSAPP_NUMBER) {
+    APP_CONFIG.WHATSAPP_NUMBER = process.env.VITE_WHATSAPP_NUMBER;
+}
 // Aqui ficam todos os produtos da loja. Para adicionar um novo
 // produto, basta copiar um bloco { ... } e alterar os dados.
 // ============================================================
@@ -382,8 +391,7 @@ function initCart() {
         });
 
         // ── Abre o WhatsApp com a mensagem pronta ──
-        // Carrega o número do .env (variável de ambiente)
-        const phone = import.meta.env.VITE_WHATSAPP_NUMBER || '558792536500';
+        const phone = APP_CONFIG.WHATSAPP_NUMBER;
         const encoded = encodeURIComponent(fullMessage);
         window.open(`https://wa.me/${phone}?text=${encoded}`, '_blank');
     });
