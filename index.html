@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
     <!-- ============================================================
          HEADER - Navegação principal
@@ -16,23 +18,26 @@
             <div class="logo-img">
                 <img src="./src/assets/Logo.png" alt="Cyenny Boutique">
             </div>
+            <!-- No Header - Navegação -->
             <nav>
                 <ul>
                     <li><a href="#colecao">COLEÇÃO</a></li>
-                    <li><a href="/camisetas.html">CAMISETAS</a></li>
+                    <!-- CORREÇÃO: Removida a barra inicial -->
+                    <li><a href="camisetas.html">CAMISETAS</a></li>
                     <li><a href="#chaveiros">CHAVEIROS</a></li>
                 </ul>
             </nav>
-            <!-- Botões de ação: Login e Carrinho -->
-            <div class="header-actions">
-                <a href="#" id="user-btn" class="action-btn user-action">
-                    <span class="action-icon">👤</span> ENTRAR
-                </a>
-                <a href="#" id="cart-btn" class="action-btn cart-action">
-                    <span class="action-icon">🛒</span> CARRINHO
-                    <span id="cart-badge" class="cart-badge">0</span>
-                </a>
-            </div>
+
+            <!-- Na Seção Hero - Botão -->
+            <section class="hero">
+                <div class="hero-content">
+                    <div class="tagline-hero">♥ VISTA SUA FÉ COM ESTILO ♥</div>
+                    <h1 class="hero-logo-main">Cyenny <span>Boutique</span></h1>
+                    <p>Peças exclusivas que expressam sua fé com estilo e elegância...</p>
+                    <!-- CORREÇÃO: Removida a barra inicial -->
+                    <a href="camisetas.html" class="btn">ENTRAR NA COLEÇÃO</a>
+                </div>
+            </section>
         </div>
     </header>
 
@@ -44,7 +49,8 @@
             <div class="hero-content">
                 <div class="tagline-hero">♥ VISTA SUA FÉ COM ESTILO ♥</div>
                 <h1 class="hero-logo-main">Cyenny <span>Boutique</span></h1>
-                <p>Peças exclusivas que expressam sua fé com estilo e elegância. Camisetas e chaveiros religiosos para todos os momentos.</p>
+                <p>Peças exclusivas que expressam sua fé com estilo e elegância. Camisetas e chaveiros religiosos para
+                    todos os momentos.</p>
                 <a href="/camisetas.html" class="btn">ENTRAR NA COLEÇÃO</a>
             </div>
         </section>
@@ -82,7 +88,8 @@
                 <!-- CARD 3 -->
                 <div class="product-card preview-card" data-name="Camiseta Nossa Senhora">
                     <div class="product-image">
-                        <img src="https://placehold.co/400x500/fdf2f4/eb5b73?text=N.Sra+Graças" alt="Camiseta Nossa Senhora">
+                        <img src="https://placehold.co/400x500/fdf2f4/eb5b73?text=N.Sra+Graças"
+                            alt="Camiseta Nossa Senhora">
                     </div>
                     <div class="product-info">
                         <span class="type">CAMISETA</span>
@@ -176,7 +183,7 @@
                 <div class="modal-info">
                     <h2 id="modal-title"></h2>
                     <p class="modal-price" id="modal-price"></p>
-                    
+
                     <div class="modal-details">
                         <p id="modal-description" class="description-text"></p>
                         <div class="specs">
@@ -232,4 +239,5 @@
 
     <script src="./main.js"></script>
 </body>
+
 </html>
