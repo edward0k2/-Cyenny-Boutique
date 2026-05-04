@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body class="page-camisetas">
+    <!-- ============================================================
+         HEADER - Navegação principal
+         ============================================================ -->
     <header>
         <div class="header-container">
             <div class="logo-text">
@@ -22,7 +25,7 @@
                     <li><a href="./index.html#chaveiros">CHAVEIROS</a></li>
                 </ul>
             </nav>
-            <!-- Botões de ação: Login e Carrinho (separados do menu) -->
+            <!-- Botões de ação: Login e Carrinho -->
             <div class="header-actions">
                 <a href="#" id="user-btn" class="action-btn user-action">
                     <span class="action-icon">👤</span> ENTRAR
@@ -36,6 +39,9 @@
     </header>
 
     <main>
+        <!-- ============================================================
+             SEÇÃO DE LISTAGEM DE CAMISETAS COM FILTROS
+             ============================================================ -->
         <section id="camisetas-listing" class="products-page">
             <div class="products-header">
                 <h2>Camisetas Religiosas</h2>
@@ -46,11 +52,16 @@
             </div>
 
             <div class="products-layout">
+                <!-- ============================================================
+                     BARRA LATERAL DE FILTROS
+                     ============================================================ -->
                 <aside class="filters-sidebar">
                     <div class="filter-group">
                         <h3>Categoria</h3>
                         <div class="filter-options">
                             <label><input type="checkbox" name="category" value="feminina"> Feminina</label>
+                            <label><input type="checkbox" name="category" value="masculina"> Masculina</label>
+                            <label><input type="checkbox" name="category" value="infantil"> Infantil</label>
                         </div>
                     </div>
 
@@ -85,6 +96,9 @@
                     </div>
                 </aside>
 
+                <!-- ============================================================
+                     GRID DE PRODUTOS
+                     ============================================================ -->
                 <div class="products-main">
                     <div id="product-grid" class="product-grid">
                         <!-- Produtos serão inseridos via JavaScript -->
@@ -97,6 +111,9 @@
         </section>
     </main>
 
+    <!-- ============================================================
+         FOOTER
+         ============================================================ -->
     <footer>
         <div class="footer-container">
             <div class="logo-text">
@@ -106,7 +123,9 @@
         </div>
     </footer>
 
-    <!-- Modal de Login -->
+    <!-- ============================================================
+         MODAL DE LOGIN
+         ============================================================ -->
     <div id="login-modal" class="modal">
         <div class="modal-overlay"></div>
         <div class="modal-content login-content">
@@ -133,26 +152,9 @@
         </div>
     </div>
 
-    <!-- Sidebar do Carrinho -->
-    <div id="cart-overlay" class="modal-overlay cart-overlay"></div>
-    <div id="cart-sidebar" class="cart-sidebar">
-        <div class="cart-header">
-            <h2>Seu Carrinho</h2>
-            <button id="close-cart" class="close-cart">&times;</button>
-        </div>
-        <div class="cart-items" id="cart-items-container">
-            <div class="empty-cart-message">Seu carrinho está vazio.</div>
-        </div>
-        <div class="cart-footer">
-            <div class="cart-total">
-                <span>Total:</span>
-                <span id="cart-total-price">R$ 0,00</span>
-            </div>
-            <button id="checkout-btn" class="btn buy-btn" disabled>FINALIZAR COMPRA</button>
-        </div>
-    </div>
-
-    <!-- Modal de Produto -->
+    <!-- ============================================================
+         MODAL DE PRODUTO
+         ============================================================ -->
     <div id="product-modal" class="modal">
         <div class="modal-overlay"></div>
         <div class="modal-content">
@@ -194,6 +196,27 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         SIDEBAR DO CARRINHO
+         ============================================================ -->
+    <div id="cart-overlay" class="modal-overlay cart-overlay"></div>
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h2>Seu Carrinho</h2>
+            <button id="close-cart" class="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items-container">
+            <div class="empty-cart-message">Seu carrinho está vazio.</div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">R$ 0,00</span>
+            </div>
+            <button id="checkout-btn" class="btn buy-btn" disabled>FINALIZAR COMPRA</button>
         </div>
     </div>
 

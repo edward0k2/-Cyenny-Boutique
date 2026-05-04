@@ -2,13 +2,11 @@
 // CONFIGURAÇÃO GLOBAL
 // ============================================================
 const APP_CONFIG = {
-    WHATSAPP_NUMBER: '558792536500' // Altere aqui ou via variável de ambiente
+    WHATSAPP_NUMBER: '558792536500' // Altere aqui o número do WhatsApp
 };
 
-// Se em produção (Vercel), tenta usar variável de ambiente
-if (typeof process !== 'undefined' && process.env && process.env.VITE_WHATSAPP_NUMBER) {
-    APP_CONFIG.WHATSAPP_NUMBER = process.env.VITE_WHATSAPP_NUMBER;
-}
+// ============================================================
+// BANCO DE DADOS DE PRODUTOS
 // Aqui ficam todos os produtos da loja. Para adicionar um novo
 // produto, basta copiar um bloco { ... } e alterar os dados.
 // ============================================================
@@ -20,7 +18,7 @@ const products = [
         sizes: ["P", "M", "G", "GG"],                // Tamanhos disponíveis
         age: "adulto",                               // Faixa etária: "adulto" ou "infantil"
         image: "sao_jose.png",                       // Caminho da imagem do produto
-        category: "masculina",                       // Categoria (masculina/feminina/infantil)
+        category: "masculina",                       // Categoria
         description: "Uma peça que une devoção e elegância. Com estampa clássica de São José, o padroeiro das famílias.",
         material: "100% Algodão Premium",
         extra: "Costura reforçada e acabamento de alta qualidade."
@@ -86,18 +84,18 @@ document.addEventListener('DOMContentLoaded', () => {
 // ============================================================
 function initProductListing() {
     // Elementos da página de listagem
-    const productGrid = document.getElementById('product-grid');    // Grid onde os cards aparecem
-    const searchInput = document.getElementById('product-search');  // Campo de busca
-    const priceRange = document.getElementById('price-range');      // Slider de preço máximo
-    const priceValue = document.getElementById('price-value');      // Texto mostrando o preço do slider
-    const categoryCheckboxes = document.querySelectorAll('input[name="category"]');  // Checkboxes de categoria
-    const sizeCheckboxes = document.querySelectorAll('input[name="size"]');  // Checkboxes de tamanho
-    const ageRadios = document.querySelectorAll('input[name="age"]');        // Radios de idade
-    const noResults = document.getElementById('no-results');        // Mensagem "nenhum produto"
+    const productGrid = document.getElementById('product-grid');
+    const searchInput = document.getElementById('product-search');
+    const priceRange = document.getElementById('price-range');
+    const priceValue = document.getElementById('price-value');
+    const categoryCheckboxes = document.querySelectorAll('input[name="category"]');
+    const sizeCheckboxes = document.querySelectorAll('input[name="size"]');
+    const ageRadios = document.querySelectorAll('input[name="age"]');
+    const noResults = document.getElementById('no-results');
 
     // Renderiza os cards de produto no grid
     function renderProducts(filteredProducts) {
-        productGrid.innerHTML = '';  // Limpa o grid
+        productGrid.innerHTML = '';
 
         // Se não há produtos, mostra mensagem
         if (filteredProducts.length === 0) {
@@ -190,13 +188,11 @@ function initProductListing() {
 // SCRIPTS GLOBAIS (rodam em TODAS as páginas)
 // ============================================================
 function initGlobalScripts() {
-
     // --- SMOOTH SCROLL ---
     // Faz os links com "#" rolarem suavemente até a seção
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
-            // Ignora se for apenas "#" (usado nos botões de login/carrinho)
             if (href === '#') return;
             if (href.startsWith('#')) {
                 e.preventDefault();
@@ -218,8 +214,8 @@ function initGlobalScripts() {
         closeBtn.addEventListener('click', closeModal);
         overlay.addEventListener('click', closeModal);
 
-        // Conecta os cards estáticos da HOME (preview-cards) para abrir o modal
-        document.querySelectorAll('.preview-card').forEach((card) => {
+        // Conecta os cards estáticos da HOME
+        document.querySelectorAll('.preview-grid .product-card').forEach((card) => {
             card.style.cursor = 'pointer';
             card.addEventListener('click', () => {
                 const title = card.querySelector('h3').textContent;
@@ -243,16 +239,16 @@ function initGlobalScripts() {
 // SISTEMA DE LOGIN (salva no localStorage)
 // ============================================================
 function initLogin() {
-    const loginBtn = document.getElementById('user-btn');         // Botão "ENTRAR" no header
-    const loginModal = document.getElementById('login-modal');    // Modal de login inteiro
-    if (!loginBtn || !loginModal) return; // Sai se os elementos não existirem na página
+    const loginBtn = document.getElementById('user-btn');
+    const loginModal = document.getElementById('login-modal');
+    if (!loginBtn || !loginModal) return;
 
-    const loginForm = document.getElementById('login-form');          // Formulário dentro do modal
-    const closeLogin = loginModal.querySelector('.close-modal');       // Botão X do modal
-    const loginOverlay = loginModal.querySelector('.modal-overlay');   // Fundo escuro do modal
-    const userProfile = document.getElementById('user-profile');      // Div que mostra "Olá, Nome!"
-    const displayName = document.getElementById('display-user-name'); // Span com o nome do usuário
-    const logoutBtn = document.getElementById('logout-btn');          // Botão "Sair"
+    const loginForm = document.getElementById('login-form');
+    const closeLogin = loginModal.querySelector('.close-modal');
+    const loginOverlay = loginModal.querySelector('.modal-overlay');
+    const userProfile = document.getElementById('user-profile');
+    const displayName = document.getElementById('display-user-name');
+    const logoutBtn = document.getElementById('logout-btn');
 
     // Abre o modal de login ao clicar em "ENTRAR"
     loginBtn.addEventListener('click', (e) => {
@@ -270,7 +266,7 @@ function initLogin() {
         loginModal.classList.remove('active');
     });
 
-    // Quando o formulário é enviado (botão "SALVAR E ENTRAR")
+    // Quando o formulário é enviado
     loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const name = document.getElementById('user-name').value.trim();
@@ -280,17 +276,15 @@ function initLogin() {
             const user = { name, phone };
             localStorage.setItem('cyenny_user', JSON.stringify(user));
 
-            // Atualiza a interface: esconde o form, mostra o perfil
+            // Atualiza a interface
             displayName.textContent = name;
             loginForm.style.display = 'none';
             userProfile.style.display = 'block';
-
-            // Atualiza o texto do botão no header
             loginBtn.textContent = name.split(' ')[0].toUpperCase();
         }
     });
 
-    // Logout: remove dados e volta para o formulário
+    // Logout
     logoutBtn.addEventListener('click', () => {
         localStorage.removeItem('cyenny_user');
         loginForm.style.display = 'flex';
@@ -299,14 +293,13 @@ function initLogin() {
         loginBtn.textContent = 'ENTRAR';
     });
 
-    // AO CARREGAR A PÁGINA: verifica se já existe um usuário salvo
-    const stored = localStorage.getItem('cyenny_user');
-    if (stored) {
-        const user = JSON.parse(stored);
-        displayName.textContent = user.name;
+    // Verifica se já existe usuário salvo
+    const savedUser = JSON.parse(localStorage.getItem('cyenny_user') || '{}');
+    if (savedUser.name) {
+        displayName.textContent = savedUser.name;
         loginForm.style.display = 'none';
         userProfile.style.display = 'block';
-        loginBtn.textContent = user.name.split(' ')[0].toUpperCase();
+        loginBtn.textContent = savedUser.name.split(' ')[0].toUpperCase();
     }
 }
 
@@ -314,23 +307,23 @@ function initLogin() {
 // SISTEMA DE CARRINHO (salva no localStorage)
 // ============================================================
 function initCart() {
-    const cartBtn = document.getElementById('cart-btn');               // Botão "CARRINHO" no header
-    const cartSidebar = document.getElementById('cart-sidebar');       // Sidebar lateral do carrinho
-    const cartOverlay = document.getElementById('cart-overlay');       // Fundo escuro atrás da sidebar
-    const closeCartBtn = document.getElementById('close-cart');        // Botão X da sidebar
-    const checkoutBtn = document.getElementById('checkout-btn');       // Botão "FINALIZAR COMPRA"
-    const cartBadge = document.getElementById('cart-badge');           // Badge com número de itens
-    const cartItemsContainer = document.getElementById('cart-items-container'); // Div com a lista de itens
-    const cartTotalEl = document.getElementById('cart-total-price');   // Span com o valor total
+    const cartBtn = document.getElementById('cart-btn');
+    const cartSidebar = document.getElementById('cart-sidebar');
+    const cartOverlay = document.getElementById('cart-overlay');
+    const closeCartBtn = document.getElementById('close-cart');
+    const checkoutBtn = document.getElementById('checkout-btn');
+    const cartBadge = document.getElementById('cart-badge');
+    const cartItemsContainer = document.getElementById('cart-items-container');
+    const cartTotalEl = document.getElementById('cart-total-price');
 
-    if (!cartBtn || !cartSidebar) return; // Sai se os elementos não existirem
+    if (!cartBtn || !cartSidebar) return;
 
     // Abre a sidebar do carrinho
     cartBtn.addEventListener('click', (e) => {
         e.preventDefault();
         cartSidebar.classList.add('active');
         cartOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Trava scroll do body
+        document.body.style.overflow = 'hidden';
         renderCart();
     });
 
@@ -343,16 +336,16 @@ function initCart() {
     closeCartBtn.addEventListener('click', closeCart);
     cartOverlay.addEventListener('click', closeCart);
 
-    // FINALIZAR COMPRA: monta lista, copia, e abre o WhatsApp
+    // FINALIZAR COMPRA: monta lista e abre o WhatsApp
     checkoutBtn.addEventListener('click', () => {
         const cart = getCart();
         if (cart.length === 0) return;
 
-        // Busca o nome do cliente logado (se houver)
+        // Busca o nome do cliente logado
         const userData = JSON.parse(localStorage.getItem('cyenny_user') || '{}');
         const clientName = userData.name || 'Cliente';
 
-        // ── Monta a mensagem formatada ──
+        // Monta a mensagem formatada
         let lines = [];
         lines.push(`✝ *PEDIDO — Cyenny Boutique* ✝`);
         lines.push(`━━━━━━━━━━━━━━━━━━━━`);
@@ -382,15 +375,14 @@ function initCart() {
 
         const fullMessage = lines.join('\n');
 
-        // ── Copia a lista para a área de transferência ──
+        // Copia a lista para a área de transferência
         navigator.clipboard.writeText(fullMessage).then(() => {
             console.log('Pedido copiado para a área de transferência!');
         }).catch(() => {
-            // Fallback caso o navegador bloqueie a clipboard
             console.warn('Não foi possível copiar automaticamente.');
         });
 
-        // ── Abre o WhatsApp com a mensagem pronta ──
+        // Abre o WhatsApp
         const phone = APP_CONFIG.WHATSAPP_NUMBER;
         const encoded = encodeURIComponent(fullMessage);
         window.open(`https://wa.me/${phone}?text=${encoded}`, '_blank');
@@ -477,8 +469,6 @@ function initCart() {
 
         cartTotalEl.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
         checkoutBtn.disabled = false;
-
-        // Atualiza o badge no header com total de itens
         cartBadge.textContent = cart.reduce((sum, i) => sum + i.quantity, 0);
 
         // Conecta os botões de +, - e remover
@@ -489,7 +479,7 @@ function initCart() {
                 if (cart[i].quantity > 1) {
                     cart[i].quantity--;
                 } else {
-                    cart.splice(i, 1); // Remove se chegar a 0
+                    cart.splice(i, 1);
                 }
                 saveCart(cart);
                 renderCart();
@@ -510,24 +500,20 @@ function initCart() {
             btn.addEventListener('click', () => {
                 const i = parseInt(btn.dataset.index);
                 const cart = getCart();
-                cart.splice(i, 1); // Remove o item do array
+                cart.splice(i, 1);
                 saveCart(cart);
                 renderCart();
             });
         });
     }
 
-    // ADICIONAR AO CARRINHO (chamada pelo modal de produto)
-    // Salva esta função globalmente para ser acessada por openModal()
+    // ADICIONAR AO CARRINHO
     window.addToCart = function (product, selectedSize) {
         const cart = getCart();
-
-        // Verifica se o mesmo produto + tamanho já existe no carrinho
         const existing = cart.find(item => item.id === product.id && item.size === selectedSize);
         if (existing) {
-            existing.quantity++;  // Se sim, incrementa quantidade
+            existing.quantity++;
         } else {
-            // Se não, adiciona novo item
             cart.push({
                 id: product.id,
                 name: product.name,
@@ -538,30 +524,26 @@ function initCart() {
         }
 
         saveCart(cart);
-
-        // Atualiza o badge no header
         cartBadge.textContent = cart.reduce((sum, i) => sum + i.quantity, 0);
-
-        // Feedback visual: mostra confirmação rápida
         showCartFeedback();
     };
 
-    // Pequena animação no badge quando item é adicionado
+    // Animação no badge
     function showCartFeedback() {
         cartBadge.classList.add('pulse');
         setTimeout(() => cartBadge.classList.remove('pulse'), 600);
     }
 
-    // Atualiza o badge ao carregar a página (caso tenha itens salvos)
+    // Atualiza o badge ao carregar
     const cart = getCart();
     cartBadge.textContent = cart.reduce((sum, i) => sum + i.quantity, 0);
 }
 
 // ============================================================
-// MODAL DE PRODUTO (abre ao clicar em qualquer produto)
+// MODAL DE PRODUTO
 // ============================================================
-let currentModalProduct = null; // Guarda o produto aberto no modal
-let selectedSize = null;        // Guarda o tamanho selecionado
+let currentModalProduct = null;
+let selectedSize = null;
 
 function openModal(product) {
     currentModalProduct = product;
@@ -576,7 +558,7 @@ function openModal(product) {
     const extra = document.getElementById('modal-extra');
     const sizesContainer = document.getElementById('modal-sizes');
 
-    // Preenche os dados do produto no modal
+    // Preenche os dados do produto
     img.src = product.image;
     title.textContent = product.name;
     price.textContent = `R$ ${product.price.toFixed(2).replace('.', ',')}`;
@@ -584,14 +566,14 @@ function openModal(product) {
     material.textContent = product.material || "Algodão Premium";
     extra.textContent = product.extra || "Produto exclusivo Cyenny Boutique.";
 
-    // Renderiza os botões de tamanho de forma segura
+    // Renderiza os botões de tamanho
     sizesContainer.innerHTML = '';
     product.sizes.forEach(size => {
         const span = document.createElement('span');
         span.className = 'size-tag';
         span.textContent = size;
 
-        // Ao clicar em um tamanho, marca ele como selecionado
+        // Ao clicar em um tamanho, marca como selecionado
         span.addEventListener('click', () => {
             sizesContainer.querySelectorAll('.size-tag').forEach(s => s.classList.remove('active'));
             span.classList.add('active');
@@ -604,7 +586,6 @@ function openModal(product) {
     // Configura o botão "ADICIONAR AO CARRINHO"
     const addBtn = document.getElementById('add-to-cart-btn');
     if (addBtn) {
-        // Remove listener antigo clonando o botão
         const newBtn = addBtn.cloneNode(true);
         addBtn.parentNode.replaceChild(newBtn, addBtn);
 
@@ -618,7 +599,7 @@ function openModal(product) {
         });
     }
 
-    // Abre o modal com animação
+    // Abre o modal
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
@@ -631,14 +612,14 @@ function closeModal() {
 }
 
 // ============================================================
-// ZOOM NA IMAGEM DO MODAL (efeito lupa)
+// ZOOM NA IMAGEM DO MODAL
 // ============================================================
 function initZoom() {
     const modalImage = document.querySelector('.modal-image');
     const img = document.getElementById('modal-img');
 
     if (modalImage && img) {
-        // Quando o mouse se move sobre a imagem, muda o ponto de origem do zoom
+        // Quando o mouse se move sobre a imagem
         modalImage.addEventListener('mousemove', (e) => {
             const { left, top, width, height } = modalImage.getBoundingClientRect();
             const x = ((e.clientX - left) / width) * 100;
@@ -646,7 +627,7 @@ function initZoom() {
             img.style.transformOrigin = `${x}% ${y}%`;
         });
 
-        // Quando o mouse sai, volta o zoom ao centro
+        // Quando o mouse sai, volta ao centro
         modalImage.addEventListener('mouseleave', () => {
             img.style.transformOrigin = 'center center';
         });

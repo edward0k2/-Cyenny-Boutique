@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +7,14 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-
 <body>
+    <!-- ============================================================
+         HEADER - Navegação principal
+         ============================================================ -->
     <header>
         <div class="header-container">
-            <div class="logo-img">
-                <img src="./src/assets/Logo.png" alt="Cyenny Boutique">
+            <div class="logo-text">
+                <span class="cyenny">Cyenny</span> <span class="boutique">Boutique</span>
             </div>
             <nav>
                 <ul>
@@ -22,7 +23,7 @@
                     <li><a href="#chaveiros">CHAVEIROS</a></li>
                 </ul>
             </nav>
-            <!-- Botões de ação: Login e Carrinho (separados do menu) -->
+            <!-- Botões de ação: Login e Carrinho -->
             <div class="header-actions">
                 <a href="#" id="user-btn" class="action-btn user-action">
                     <span class="action-icon">👤</span> ENTRAR
@@ -36,123 +37,52 @@
     </header>
 
     <main>
+        <!-- ============================================================
+             SEÇÃO HERO - Apresentação principal
+             ============================================================ -->
         <section class="hero">
             <div class="hero-content">
                 <div class="tagline-hero">♥ VISTA SUA FÉ COM ESTILO ♥</div>
                 <h1 class="hero-logo-main">Cyenny <span>Boutique</span></h1>
-                <p>Peças exclusivas que expressam sua fé com estilo e elegância. Camisetas e chaveiros religiosos para
-                    todos os momentos.</p>
+                <p>Peças exclusivas que expressam sua fé com estilo e elegância. Camisetas e chaveiros religiosos para todos os momentos.</p>
                 <a href="./camisetas.html" class="btn">ENTRAR NA COLEÇÃO</a>
             </div>
-            <div class="scroll-indicator">ROLAR PARA VER</div>
         </section>
 
+        <!-- ============================================================
+             SEÇÃO COLEÇÃO - Preview dos produtos
+             ============================================================ -->
         <section id="colecao" class="preview-section">
-            <div class="section-divider">
-                <span class="heart-icon">♥</span>
-            </div>
-            <div class="preview-header">
-                <span class="category-label">COLEÇÃO</span>
-                <h2>Camisetas</h2>
-            </div>
-            <div class="preview-grid">
-                <div class="preview-card">
-                    <div class="preview-image">
-                        <img src="https://placehold.co/400x500/fdf2f4/eb5b73?text=N.Sra+Graças"
-                            alt="Camiseta N. Sra das Graças">
-                    </div>
-                    <div class="preview-info">
-                        <span class="type">CAMISETA</span>
-                        <h3>Camiseta Nossa Senhora das Graças</h3>
-                        <p class="price">R$ 59,90</p>
-                    </div>
-                </div>
-                <div class="preview-card">
-                    <div class="preview-image">
-                        <img src="https://placehold.co/400x500/fdf2f4/eb5b73?text=Salve+Maria"
-                            alt="Camiseta Salve Maria">
-                    </div>
-                    <div class="preview-info">
-                        <span class="type">CAMISETA</span>
-                        <h3>Camiseta Salve Maria</h3>
-                        <p class="price">R$ 54,90</p>
-                    </div>
-                </div>
-                <div class="preview-card">
-                    <div class="preview-image">
-                        <img src="https://placehold.co/400x500/fdf2f4/eb5b73?text=Jesus+Cristo"
-                            alt="Camiseta Jesus Cristo">
-                    </div>
-                    <div class="preview-info">
-                        <span class="type">CAMISETA</span>
-                        <h3>Camiseta Jesus Cristo</h3>
-                        <p class="price">R$ 64,90</p>
-                    </div>
-                </div>
+            <h2>Nossa Coleção</h2>
+            <div class="preview-grid" id="preview-grid">
+                <!-- Cards serão injetados via JavaScript -->
             </div>
         </section>
 
-        <section id="chaveiros" class="preview-section">
-            <div class="preview-header">
-                <span class="category-label">COLEÇÃO</span>
-                <h2>Chaveiros</h2>
-            </div>
-            <div class="preview-grid center-item">
-                <div class="preview-card circle-card">
-                    <div class="preview-image circle">
-                        <img src="https://placehold.co/300x300/fdf2f4/eb5b73?text=†" alt="Chaveiro Aparecida">
-                    </div>
-                    <div class="preview-info">
-                        <h3>Chaveiro Nossa Senhora Aparecida</h3>
-                        <p class="price">R$ 19,90</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="mission-section">
-            <div class="section-divider-line"></div>
-            <div class="mission-content">
-                <span class="mission-label">NOSSA MISSÃO</span>
-                <blockquote>"Peças que carregam fé, estilo e o amor de Deus em cada detalhe."</blockquote>
-            </div>
-        </section>
-
-        <section class="icon-bar">
-            <div class="icon-item">
-                <span class="icon">†</span>
-                <span>MODELOS RELIGIOSOS</span>
-            </div>
-            <div class="icon-item">
-                <span class="icon">♥</span>
-                <span>FEITAS COM AMOR</span>
-            </div>
-            <div class="icon-item">
-                <span class="icon">✦</span>
-                <span>ESTAMPAS EXCLUSIVAS</span>
-            </div>
-            <div class="icon-item">
-                <span class="icon">✿</span>
-                <span>PERFEITAS PARA MISSAS</span>
-            </div>
+        <!-- ============================================================
+             SEÇÃO CHAVEIROS
+             ============================================================ -->
+        <section id="chaveiros" class="chaveiros-section">
+            <h2>Chaveiros Personalizados</h2>
+            <p>Em breve mais novidades!</p>
         </section>
     </main>
 
+    <!-- ============================================================
+         FOOTER
+         ============================================================ -->
     <footer>
-        <div class="footer-bottom">
-            <div class="logo-img small" id="footer-logo">
-                <img src="./src/assets/Logo.png" alt="">
-                <div class="contact-info">
-                <a href="https://www.instagram.com"><i class="fa-brands fa-instagram"></i><span>Instagram</span></a>
-                <a href="https://wa.me/558792536500" target="_blank"><i class="fa-brands fa-whatsapp"></i><span>Whatsapp</span></a>
+        <div class="footer-container">
+            <div class="logo-text">
+                <span class="cyenny">Cyenny</span> <span class="boutique">Boutique</span>
             </div>
-        </div>
-        <div class="copyright">
-            © 2026 Cyenny Boutique — Vista sua fé com estilo e elegância
+            <p>&copy; 2026 Cyenny Boutique — Vista sua fé com estilo e elegância</p>
         </div>
     </footer>
 
-    <!-- Modal de Login -->
+    <!-- ============================================================
+         MODAL DE LOGIN
+         ============================================================ -->
     <div id="login-modal" class="modal">
         <div class="modal-overlay"></div>
         <div class="modal-content login-content">
@@ -166,7 +96,7 @@
                         <input type="text" id="user-name" required placeholder="Ex: Maria Silva">
                     </div>
                     <div class="input-group">
-                        <label for="user-email">Seu Celular (opcional)</label>
+                        <label for="user-phone">Seu Celular (opcional)</label>
                         <input type="tel" id="user-phone" placeholder="(11) 99999-9999">
                     </div>
                     <button type="submit" class="btn">SALVAR E ENTRAR</button>
@@ -179,26 +109,9 @@
         </div>
     </div>
 
-    <!-- Sidebar do Carrinho -->
-    <div id="cart-overlay" class="modal-overlay cart-overlay"></div>
-    <div id="cart-sidebar" class="cart-sidebar">
-        <div class="cart-header">
-            <h2>Seu Carrinho</h2>
-            <button id="close-cart" class="close-cart">&times;</button>
-        </div>
-        <div class="cart-items" id="cart-items-container">
-            <div class="empty-cart-message">Seu carrinho está vazio.</div>
-        </div>
-        <div class="cart-footer">
-            <div class="cart-total">
-                <span>Total:</span>
-                <span id="cart-total-price">R$ 0,00</span>
-            </div>
-            <button id="checkout-btn" class="btn buy-btn" disabled>FINALIZAR COMPRA</button>
-        </div>
-    </div>
-
-    <!-- Modal de Produto -->
+    <!-- ============================================================
+         MODAL DE PRODUTO
+         ============================================================ -->
     <div id="product-modal" class="modal">
         <div class="modal-overlay"></div>
         <div class="modal-content">
@@ -210,7 +123,7 @@
                 <div class="modal-info">
                     <h2 id="modal-title"></h2>
                     <p class="modal-price" id="modal-price"></p>
-
+                    
                     <div class="modal-details">
                         <p id="modal-description" class="description-text"></p>
                         <div class="specs">
@@ -233,8 +146,8 @@
                         </div>
                     </div>
 
-                    <div class="modal-actions" style="display: flex; gap: 10px; margin-top: 15px;">
-                        <button id="add-to-cart-btn" class="btn buy-btn" style="flex: 1;">
+                    <div class="modal-actions">
+                        <button id="add-to-cart-btn" class="btn buy-btn">
                             ADICIONAR AO CARRINHO
                         </button>
                     </div>
@@ -243,7 +156,27 @@
         </div>
     </div>
 
+    <!-- ============================================================
+         SIDEBAR DO CARRINHO
+         ============================================================ -->
+    <div id="cart-overlay" class="modal-overlay cart-overlay"></div>
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h2>Seu Carrinho</h2>
+            <button id="close-cart" class="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items-container">
+            <div class="empty-cart-message">Seu carrinho está vazio.</div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">R$ 0,00</span>
+            </div>
+            <button id="checkout-btn" class="btn buy-btn" disabled>FINALIZAR COMPRA</button>
+        </div>
+    </div>
+
     <script src="./main.js"></script>
 </body>
-
 </html>
